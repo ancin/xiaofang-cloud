@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+management:
+  endpoints:
+    prometheus:
+      id: prometheus
+    web:
+      exposure:
+        include: "*"
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  typeAliasesPackage: com.diandian.*.entity
+logging:
+  level:
+    com.diandian: DEBUG
+    com.baomidou.mybatisplus: DEBUG
+  spring:
+    datasource:
+      druid:
+        initial-size: 5
+        min-idle: 5
+        max-active: 20
+        max-wait: 3000
+        aop-patterns: com.diandian.*.service.*
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        test-while-idle: true
+        test-on-borrow: true
+        test-on-return: false
+  config: classpath:log4j.xml

@@ -1,0 +1,13 @@
+/xiaofang-common/xiaofang-common.iml
+/xiaofang-dao/xiaofang-dao.iml
+/xiaofang-entity/xiaofang-entity.iml
+/xiaofang-service/xiaofang-service.iml
+/xiaofang-web/xiaofang-web.iml
+/.idea/
+/xiaofang-common/target/
+/xiaofang-dao/target/
+/xiaofang-entity/target/
+/xiaofang-service/target/
+/xiaofang-web/target/
+/xiaofang-framework/xiaofang-framework.iml
+/xiaofang.iml

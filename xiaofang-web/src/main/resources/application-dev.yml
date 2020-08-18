@@ -1,0 +1,55 @@
+server:
+  port: 8082
+
+logging:
+    level:
+        com.antathon.myblog: DEBUG
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/diandian-test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+
+diandian.appId: wx14f7b1f5a8c60691
+diandian.appSecret: 3e257536d741461147d65a108dcb7c3f
+
+diandian.wx.token: shengxiaohuaTest
+
+diandian.env: test
+
+diandian.wechat.redirectUrl: http://localhost:8080/#/home
+
+#商户号
+diandian.pay.mchId:
+#支付通知地址
+diandian.pay.notifyUrl: "http://shengxiaohua.natapp1.cc/notify"
+#商户平台设置的密钥key 微信商户平台(pay.weixin.qq.com)-->账户中心-->账户设置-->API安全-->密钥设置
+diandian.pay.sign.key: "123456789qwertyuiopasdfghjklzxcv"
+
+#oss路径
+diandian.oss.domain.url: http://47.105.165.68:9000/
+# Single file max size
+multipart.maxFileSize: 100Mb
+# All files max size
+multipart.maxRequestSize: 500Mb
+
+#短信发送
+diandian.sms.appId: 100058
+diandian.sms.sec: a9938f97-edd9-4eb4-8928-0b1c3ab48157
+diandian.sms.appUrl: https://sms.zhenzikj.com
+
+diandian.url: http://localhost:8080/
+
+diandian.oss.accessKey: AKIDA6mBKBj7D1dy34pa6MK1X1NafU2MrYXO
+diandian.oss.accessSecret: qXP1Qho6KSjzzMVb8f4NgP8bmG81cwmw
+#diandian.oss.endPointPublic: oss-cn-zhangjiakou.aliyuncs.com
+#diandian.oss.endPointInternal: oss-cn-zhangjiakou-internal.aliyuncs.com
+#diandian.oss.endPoint: oss-cn-zhangjiakou-internal.aliyuncs.com
+diandian.oss.bucketName: jingshu-att-1301793313
+
+#临时文件上传地址：
+diandian.tempFile.dir: /root/tools/uploadFile
+#合成图片的背景图片
+diandian.distributionBackgroundImg: http://47.105.165.68:9000/0305/8caca5ca80d24d6190981999f50555d0.jpg
