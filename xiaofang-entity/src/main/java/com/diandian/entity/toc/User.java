@@ -66,19 +66,10 @@ public class User extends BaseEntity {
     @ApiModelProperty(value = "个人简介")
     private String introduce;
 
-    @ApiModelProperty(value = "今日学习时长")
-    private Integer todayStudyMin;
-
-    @ApiModelProperty(value = "累计学习天数")
-    private Integer studyDays;
-
-    @ApiModelProperty(value = "连续学习天数")
-    private Integer continueDays;
 
     @ApiModelProperty(value = "用户等级")
     private Integer level;
 
     private String role;
 
-    private Integer subscribe;
 }

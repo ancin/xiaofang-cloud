@@ -7,7 +7,7 @@ package com.diandian.common.enums;
  * @last modify by [shengxiaohua 2020-01-06 17:47]
  **/
 public enum LoginTypeEnum {
-    LOGIN_TYPE_USER_PWD(1,"用户名密码登录","MyRealm"),
+    LOGIN_TYPE_USER_PWD(1,"用户名密码登录","PasswordRealm"),
 
     LOGIN_TYPE_OPENID(2,"openId登录","WechatRealm");
 

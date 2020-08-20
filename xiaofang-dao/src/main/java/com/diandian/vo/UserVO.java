@@ -20,6 +20,8 @@ public class UserVO {
 
     @ApiModelProperty(name = "登录名称（英文）")
     private String loginName;
+    @ApiModelProperty(value = "登录密码")
+    private String loginPassword;
 
     @ApiModelProperty(name = "用户头像")
     private String headImg;

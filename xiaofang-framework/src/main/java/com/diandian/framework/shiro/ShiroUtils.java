@@ -2,7 +2,6 @@ package com.diandian.framework.shiro;
 
 import com.diandian.common.utils.BeanUtils;
 import com.diandian.entity.toc.User;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.mgt.RealmSecurityManager;
@@ -52,7 +51,7 @@ public class ShiroUtils {
 
     public static void clearCachedAuthorizationInfo() {
         RealmSecurityManager rsm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
-        MyRealm realm = (MyRealm) rsm.getRealms().iterator().next();
+        PasswordRealm realm = (PasswordRealm) rsm.getRealms().iterator().next();
         realm.clearCachedAuthorizationInfo();
     }
 

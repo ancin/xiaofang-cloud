@@ -48,7 +48,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             user.setNickName(nickName);
             user.setWxId(openId);
             user.setHeadImg(userImg);
-            user.setSubscribe(subscribe);
+
             baseMapper.insert(user);
         }else{
             log.info("更新用户,{},{},{}",userImg,nickName,subscribe);
@@ -58,7 +58,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             if(StringUtils.isNoneEmpty(nickName)){
                 user.setNickName(nickName);
             }
-            user.setSubscribe(subscribe);
             baseMapper.updateById(user);
         }
 

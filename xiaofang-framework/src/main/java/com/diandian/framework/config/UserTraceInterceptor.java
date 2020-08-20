@@ -33,18 +33,7 @@ public class UserTraceInterceptor implements HandlerInterceptor {
         if(!(handler instanceof HandlerMethod)){
             return true;
         }
-        try {
-            Subject subject = SecurityUtils.getSubject();
-            Object userObject = subject.getPrincipal();
-            if (userObject!=null){
-                UserVO userVO = (UserVO) userObject;
-                log.info("用户行为监控日志");
 
-            }
-        } catch (JWTDecodeException j) {
-            log.error("拦截异常",j);
-            return true;
-        }
         return true;
     }
 }

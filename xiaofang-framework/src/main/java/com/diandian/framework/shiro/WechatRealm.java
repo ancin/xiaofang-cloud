@@ -49,7 +49,6 @@ public class WechatRealm extends AuthorizingRealm {
         userVO.setRealName(user.getRealName());
         userVO.setFinishAuth(user.getFinishAuth());
         userVO.setHeadImg(user.getHeadImg());
-        userVO.setSubscribe(user.getSubscribe());
         return new SimpleAuthenticationInfo(userVO, token, LoginTypeEnum.LOGIN_TYPE_OPENID.getRealmName());
     }
 

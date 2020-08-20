@@ -2,6 +2,7 @@ package com.diandian.framework.shiro;
 
 import com.diandian.common.config.JwtFilter;
 import com.diandian.common.enums.LoginTypeEnum;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.mgt.SecurityManager;
@@ -42,7 +43,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/webjars/**", "anon");
         // filterChainDefinitionMap.put("/v2/**", "anon");
         filterChainDefinitionMap.put("/v2/admin/user/login", "anon");
-        filterChainDefinitionMap.put("/column/list", "anon");
+        filterChainDefinitionMap.put("/v2/admin/user/logout", "anon");
         filterChainDefinitionMap.put("/v2/admin/designModel/**", "anon");
         filterChainDefinitionMap.put("/v2/admin/getOssKey", "anon");
         filterChainDefinitionMap.put("/favicon.ico", "anon");
@@ -66,10 +67,19 @@ public class ShiroConfig {
     }
 
     @Bean
-    public MyRealm userRealm() {
-        MyRealm userRealm = new MyRealm();
-        userRealm.setName(LoginTypeEnum.LOGIN_TYPE_USER_PWD.getRealmName());
+    public PasswordRealm userRealm() {
+        PasswordRealm userRealm = new PasswordRealm();
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return userRealm;
+    }
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        // 设置散列算法
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        // 设置双层MD5  散列次数
+        hashedCredentialsMatcher.setHashIterations(2);
+        return hashedCredentialsMatcher;
     }
 
     @Bean
@@ -82,11 +92,12 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setAuthenticator(modularRealmAuthenticator());
-        List<Realm> realms = new ArrayList<>();
+        //securityManager.setAuthenticator(modularRealmAuthenticator());
+       /* List<Realm> realms = new ArrayList<>();
         realms.add(userRealm());
         realms.add(wechatRealm());
-        securityManager.setRealms(realms);
+        securityManager.setRealms(realms);*/
+        securityManager.setRealm(userRealm());
         /*
          * 关闭shiro自带的session，详情见文档
          * http://shiro.apache.org/session-management.html#SessionManagement-StatelessApplications%28Sessionless%29
@@ -100,12 +111,12 @@ public class ShiroConfig {
         return securityManager;
     }
 
-    @Bean
+    /*@Bean
     public ModularRealmAuthenticator modularRealmAuthenticator(){
         UserModularRealmAuthenticator modularRealmAuthenticator = new UserModularRealmAuthenticator();
         modularRealmAuthenticator.setAuthenticationStrategy(new AtLeastOneSuccessfulStrategy());
         return modularRealmAuthenticator;
-    }
+    }*/
 
     @Bean
     public FilterRegistrationBean delegatingFilterProxy() {
