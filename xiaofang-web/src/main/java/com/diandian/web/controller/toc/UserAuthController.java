@@ -1,10 +1,8 @@
 package com.diandian.web.controller.toc;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.diandian.common.bean.ResponseHelper;
-import com.diandian.common.bean.ResponseModel;
-import com.diandian.common.dto.JwtToken;
 import com.diandian.common.enums.UserEnum;
+import com.diandian.common.utils.Aes;
 import com.diandian.common.utils.JwtUtil;
 import com.diandian.entity.toc.User;
 import com.diandian.entity.toc.UserAuth;
@@ -15,13 +13,16 @@ import com.diandian.web.common.controller.WebBaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +35,7 @@ import java.util.Map;
 @Slf4j
 @RequestMapping("/v2/admin/user")
 public class UserAuthController extends WebBaseController {
-
+    private static final String KEY = "abcdefgabcdefg12";
     @Resource
     private IUserAuthService userAuthService;
     @Resource
@@ -73,14 +74,21 @@ public class UserAuthController extends WebBaseController {
 
         Map<String, Object> result = new HashMap<>();
         User user = userService.getUserByPhoneNumber(userVO.getMobile());
+        String deryptPaaswd = null;
+        try {
+            deryptPaaswd = Aes.decrypt(userVO.getLoginPassword(),KEY);
+            System.out.println(deryptPaaswd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (user == null) {
-            result.put("errorMsg", "用户请先关注公众号,请进入公众号：敬书课堂，完成认证");
+            result.put("errorMsg", "用户不合法,请联系管理员.");
             result.put("code", 1);
             return result;
         }
         request.getSession().setAttribute("phone", userVO.getMobile());
         if (user.getFinishAuth() == null || UserEnum.FINISH_AUTH_PASS.getValue() != user.getFinishAuth().intValue()) {
-            result.put("errorMsg", "用户未完成实名认证,请进入公众号：敬书课堂，完成认证");
+            result.put("errorMsg", "用户不合法,请联系管理员.");
             result.put("code", 1);
             return result;
         }
@@ -88,7 +96,7 @@ public class UserAuthController extends WebBaseController {
         String token = JwtUtil.sign(user.getId(), "123456");
         result.put("token", token);
 
-        UsernamePasswordToken passwordToken = new UsernamePasswordToken(user.getLoginName(), user.getLoginPassword());
+        UsernamePasswordToken passwordToken = new UsernamePasswordToken(user.getLoginName(), deryptPaaswd);
         try {
             SecurityUtils.getSubject().login(passwordToken);
         } catch (Exception e) {
@@ -111,5 +119,6 @@ public class UserAuthController extends WebBaseController {
         log.info("logout");
         SecurityUtils.getSubject().logout();
     }
+
 
 }
