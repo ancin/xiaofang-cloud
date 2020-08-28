@@ -13,15 +13,11 @@ import com.diandian.web.common.controller.WebBaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.binary.Base64;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
@@ -77,7 +73,6 @@ public class UserAuthController extends WebBaseController {
         String deryptPaaswd = null;
         try {
             deryptPaaswd = Aes.decrypt(userVO.getLoginPassword(),KEY);
-            System.out.println(deryptPaaswd);
         } catch (Exception e) {
             e.printStackTrace();
         }

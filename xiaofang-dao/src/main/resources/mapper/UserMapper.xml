@@ -3,18 +3,18 @@
 <mapper namespace="com.diandian.dao.toc.UserMapper">
 
     <select id="getByUserName" resultType="com.diandian.entity.toc.User">
-        select * from user where login_name=#{userName} and is_deleted='N'
+        select * from t_user where login_name=#{userName} and is_deleted='N'
     </select>
 
     <select id="getUserByOpenId" resultType="com.diandian.entity.toc.User">
-         select * from user where wx_id=#{openId} and is_deleted='N'
+         select * from t_user where wx_id=#{openId} and is_deleted='N'
     </select>
 
     <select id="getOpenIdById" resultType="java.lang.String">
-        select wx_id from user where id=#{userId} and is_deleted='N'
+        select wx_id from t_user where id=#{userId} and is_deleted='N'
     </select>
 
     <select id="getUserByPhoneNumber" resultType="com.diandian.entity.toc.User">
-        select * from user where mobile=#{mobile} and is_deleted='N'
+        select * from t_user where mobile=#{mobile} and is_deleted='N'
     </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.diandian.web.common.controller;
 
 import com.diandian.common.config.BaseController;
+import com.diandian.entity.toc.User;
 import com.diandian.vo.UserVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -13,7 +14,7 @@ public class AdminBaseController extends BaseController {
      * @return
      */
     public static Long getUserIdByShiro(){
-        UserVO userVO = getUserByShiro();
+        User userVO = getUserByShiro();
         if(userVO==null){
            getResponse().setStatus(HttpStatus.UNAUTHORIZED.value());
            return null;
@@ -21,10 +22,10 @@ public class AdminBaseController extends BaseController {
         return userVO.getId();
     }
 
-    public static UserVO getUserByShiro(){
+    public static User getUserByShiro(){
         Subject subject = SecurityUtils.getSubject();
         Object userObject = subject.getPrincipal();
-        UserVO userVO = (UserVO) userObject;
+        User userVO = (User) userObject;
         return userVO;
     }
 }

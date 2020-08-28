@@ -12,7 +12,7 @@ import java.util.Date;
  * @author shengxiaohua
  * @Description:
  * @create 2019-11-26 15:41
- * @last modify by [shengxiaohua 2019-11-26 15:41]
+ * @last modify by [ 2019-11-26 15:41]
  **/
 @Data
 public class BaseEntity {

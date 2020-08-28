@@ -37,15 +37,15 @@ import java.util.concurrent.Executors;
  * @Version 1.0
  **/
 @Slf4j
-@Component
+//@Component
 public class TencentCOSUtil implements InitializingBean {
 
 
-    @Value("${diandian.oss.accessKey}")
+    //@Value("${diandian.oss.accessKey}")
     private String accessKeyId;
-    @Value("${diandian.oss.accessSecret}")
+    //@Value("${diandian.oss.accessSecret}")
     private String accessKeySecret;
-    @Value("${diandian.oss.bucketName}")
+    //@Value("${diandian.oss.bucketName}")
     private String bucketName;
     private  COSClient cosClient;
 

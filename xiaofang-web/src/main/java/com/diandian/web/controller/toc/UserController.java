@@ -21,17 +21,13 @@ public class  UserController extends WebBaseController {
     @Autowired
     private IUserService userService;
 
-    @Value("${diandian.env}")
-    private String env;
+
 
     @ApiOperation(value = "用户信息接口",notes = "用户信息接口")
     @GetMapping("get")
     public ResultBase<UserVO> getUser(String enviroment){
         log.info("获取用户信息接口开始");
-        if("test".equals(env) || "test".equals(enviroment)){
-            //开发环境使用默认测试账号
-            SecurityUtils.getSubject().login(new WeChatToken("oq0iR0gr83rWeJTpIowatrRoOHjA"));
-        }
+
         Subject subject = SecurityUtils.getSubject();
         Object userObject = subject.getPrincipal();
         UserVO userVO = (UserVO) userObject;

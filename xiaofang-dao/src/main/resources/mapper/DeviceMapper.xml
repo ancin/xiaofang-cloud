@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diandian.dao.toc.DeviceMapper">
+    <select id="queryByPage"  resultType="com.diandian.entity.toc.Device">
+        select * from t_device where is_deleted='N'
+        <if test="deviceDTO.deviceNo != null">
+            and device_no = #{deviceDTO.deviceNo}
+        </if>
+        <if test="deviceDTO.deviceName != null">
+            and device_name = #{deviceDTO.deviceName}
+        </if>
+        <if test="deviceDTO.userId != null">
+            and user_id = #{deviceDTO.userId}
+        </if>
+        <if test="deviceDTO.deviceStatus != null">
+            and device_status = #{deviceDTO.deviceStatus}
+        </if>
+        <if test="deviceDTO.region != null">
+            and region = #{deviceDTO.region}
+        </if>
+        <if test="deviceDTO.clazz != null">
+            and clazz = #{deviceDTO.clazz}
+        </if>
+        <if test="deviceDTO.industry != null">
+            and industry = #{deviceDTO.industry}
+        </if>
+        <if test="deviceDTO.companyName != null">
+            and company_name = #{deviceDTO.companyName}
+        </if>
+    </select>
+</mapper>
