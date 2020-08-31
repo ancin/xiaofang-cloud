@@ -6,7 +6,7 @@
 		</encoder>
 	</appender>
 	<appender name="syslog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>logs/diandian.log</File>
+		<File>logs/xiaofang.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>logs/diandian.%d.%i.log</fileNamePattern>
 			<!-- 每产生一个日志文件，该日志文件的保存期限为30天 -->
