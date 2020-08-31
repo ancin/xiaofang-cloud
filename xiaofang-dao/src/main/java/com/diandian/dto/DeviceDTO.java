@@ -24,6 +24,9 @@ public class DeviceDTO {
     @ApiModelProperty(value = "设备序名称")
     private String deviceName;
 
+    @ApiModelProperty(value = "设备型号")
+    private String deviceModel;
+
     @ApiModelProperty(value = "设备状态0离线1在线")
     private String deviceStatus;
 

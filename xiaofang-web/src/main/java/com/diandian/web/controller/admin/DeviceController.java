@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.diandian.common.config.BaseController;
 
-import java.util.List;
 
 
 /**
@@ -32,8 +31,7 @@ public class DeviceController extends BaseController {
     @Autowired
     private IDeviceService deviceService;
 
-    @ApiOperation(value = "获取认证列表",notes = "获取认证列表")
-
+    @ApiOperation(value = "获取Device列表",notes = "获取Device列表")
     @PostMapping("/list")
     public IPage<Device> list( @RequestBody DeviceDTO deviceDTO){
         log.info("设备查询:"+deviceDTO);

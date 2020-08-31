@@ -34,6 +34,9 @@ public class Device extends BaseEntity {
     @ApiModelProperty(value = "设备类型")
     private String deviceType;
 
+    @ApiModelProperty(value = "设备型号")
+    private String deviceModel;
+
     @ApiModelProperty(value = "设备状态0离线1在线")
     private String deviceStatus;
 
