@@ -100,8 +100,11 @@ public class UserAuthController extends WebBaseController {
             errorMsg = "success";
         } catch (Exception e) {
             result.put("code", 1);
-            errorMsg = "用户登录失败";
+            errorMsg = "请确认用户名密码是否正确.";
+            result.put("errorMsg", errorMsg);
             log.error("登录失败",e);
+            result.put("code", 401);
+            return result;
         }
 
 
