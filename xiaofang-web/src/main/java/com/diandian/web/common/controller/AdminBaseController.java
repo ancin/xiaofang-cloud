@@ -3,10 +3,12 @@ package com.diandian.web.common.controller;
 import com.diandian.common.config.BaseController;
 import com.diandian.entity.toc.User;
 import com.diandian.vo.UserVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.http.HttpStatus;
 
+@Slf4j
 public class AdminBaseController extends BaseController {
 
     /**
@@ -15,6 +17,7 @@ public class AdminBaseController extends BaseController {
      */
     public static Long getUserIdByShiro(){
         User userVO = getUserByShiro();
+        log.info("AdminBase get user:"+userVO);
         if(userVO==null){
            getResponse().setStatus(HttpStatus.UNAUTHORIZED.value());
            return null;

@@ -35,6 +35,7 @@ public class DeviceController extends BaseController {
     @PostMapping("/list")
     public IPage<Device> list( @RequestBody DeviceDTO deviceDTO){
         log.info("设备查询:"+deviceDTO);
+        log.info(AdminBaseController.getUserIdByShiro()+"");
         long userId = AdminBaseController.getUserIdByShiro() == null ? getUserIdByShiro() : AdminBaseController.getUserIdByShiro();
         deviceDTO.setUserId(userId);
         IPage<Device> deviceIPage = deviceService.queryByPage(deviceDTO);

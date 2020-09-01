@@ -2,6 +2,7 @@ package com.diandian.common.config;
 
 import com.auth0.jwt.JWT;
 import com.diandian.entity.toc.User;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Slf4j
 public class BaseController {
 
     public static String getTokenUserId() {
@@ -53,6 +55,7 @@ public class BaseController {
         Subject subject = SecurityUtils.getSubject();
         Object userObject = subject.getPrincipal();
         User userVO = (User) userObject;
+        log.info("BaseController get User:"+userVO);
         return userVO;
     }
 }

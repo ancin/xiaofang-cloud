@@ -2,9 +2,8 @@ package com.diandian.web.controller.admin;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.diandian.dto.DeviceDTO;
+import com.diandian.common.config.BaseController;
 import com.diandian.dto.SettingDTO;
-import com.diandian.entity.toc.Device;
 import com.diandian.entity.toc.Setting;
 import com.diandian.service.ISettingService;
 import com.diandian.web.common.controller.AdminBaseController;
@@ -13,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.diandian.common.config.BaseController;
 
 /**
  * <p>

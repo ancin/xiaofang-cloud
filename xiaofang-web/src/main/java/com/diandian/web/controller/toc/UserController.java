@@ -2,7 +2,6 @@ package com.diandian.web.controller.toc;
 
 import com.diandian.common.config.JsonResult;
 import com.diandian.common.dto.ResultBase;
-import com.diandian.common.dto.WeChatToken;
 import com.diandian.service.IUserService;
 import com.diandian.vo.UserVO;
 import com.diandian.web.common.controller.WebBaseController;
@@ -11,8 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")

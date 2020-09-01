@@ -1,7 +1,6 @@
 package com.diandian.framework.shiro;
 
 import com.diandian.common.config.SpringTools;
-import com.diandian.common.enums.LoginTypeEnum;
 import com.diandian.entity.toc.User;
 import com.diandian.service.IRoleService;
 import com.diandian.service.IUserService;

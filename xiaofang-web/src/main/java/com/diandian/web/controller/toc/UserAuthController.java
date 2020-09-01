@@ -71,19 +71,22 @@ public class UserAuthController extends WebBaseController {
         Map<String, Object> result = new HashMap<>();
         User user = userService.getUserByPhoneNumber(userVO.getMobile());
         String deryptPaaswd = null;
+        String errorMsg = null;
         try {
             deryptPaaswd = Aes.decrypt(userVO.getLoginPassword(),KEY);
         } catch (Exception e) {
             e.printStackTrace();
         }
         if (user == null) {
-            result.put("errorMsg", "用户不合法,请联系管理员.");
+            errorMsg = "用户不合法,请联系管理员.";
+            result.put("errorMsg", errorMsg);
             result.put("code", 1);
             return result;
         }
         request.getSession().setAttribute("phone", userVO.getMobile());
         if (user.getFinishAuth() == null || UserEnum.FINISH_AUTH_PASS.getValue() != user.getFinishAuth().intValue()) {
-            result.put("errorMsg", "用户不合法,请联系管理员.");
+            errorMsg = "用户不合法,请联系管理员.";
+            result.put("errorMsg", errorMsg);
             result.put("code", 1);
             return result;
         }
@@ -94,13 +97,16 @@ public class UserAuthController extends WebBaseController {
         UsernamePasswordToken passwordToken = new UsernamePasswordToken(user.getLoginName(), deryptPaaswd);
         try {
             SecurityUtils.getSubject().login(passwordToken);
+            errorMsg = "success";
         } catch (Exception e) {
-            result.put("errorMsg", "用户登录失败");
             result.put("code", 1);
+            errorMsg = "用户登录失败";
+            log.error("登录失败",e);
         }
 
 
         SecurityUtils.getSubject().getSession().setTimeout(-1000l);
+        result.put("errorMsg", errorMsg);
         result.put("user", user);
         result.put("code", 200);
         log.info("返回:" + result);
