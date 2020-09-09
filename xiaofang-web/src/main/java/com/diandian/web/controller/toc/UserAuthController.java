@@ -12,6 +12,7 @@ import com.diandian.vo.UserVO;
 import com.diandian.web.common.controller.WebBaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.experimental.Tolerate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -56,12 +57,14 @@ public class UserAuthController extends WebBaseController {
     }
 
     @ApiOperation(value = "查询认证", notes = "查询认证")
-    @GetMapping("/info")
-    public UserAuth info() {
-        Long userId = getUserIdByShiro();
-        QueryWrapper<UserAuth> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_id", userId);
-        return userAuthService.getOne(queryWrapper);
+    @PostMapping("/info")
+    public Map<String, Object> info(@RequestBody UserVO userVO,HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+        System.out.println("### userVO="+ userVO);
+        User user = (User)request.getSession().getAttribute("current");
+        System.out.println("## get user from session:"+user);
+        result.put("user",user);
+        return result;
     }
 
 
@@ -84,6 +87,7 @@ public class UserAuthController extends WebBaseController {
             return result;
         }
         request.getSession().setAttribute("phone", userVO.getMobile());
+
         if (user.getFinishAuth() == null || UserEnum.FINISH_AUTH_PASS.getValue() != user.getFinishAuth().intValue()) {
             errorMsg = "用户不合法,请联系管理员.";
             result.put("errorMsg", errorMsg);
@@ -111,6 +115,7 @@ public class UserAuthController extends WebBaseController {
         SecurityUtils.getSubject().getSession().setTimeout(-1000l);
         result.put("errorMsg", errorMsg);
         result.put("user", user);
+        request.getSession().setAttribute("current", user);
         result.put("code", 200);
         log.info("返回:" + result);
 
