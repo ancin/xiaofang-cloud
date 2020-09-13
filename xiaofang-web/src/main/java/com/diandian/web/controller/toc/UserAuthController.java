@@ -1,6 +1,5 @@
 package com.diandian.web.controller.toc;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.diandian.common.enums.UserEnum;
 import com.diandian.common.utils.Aes;
 import com.diandian.common.utils.JwtUtil;
@@ -12,11 +11,13 @@ import com.diandian.vo.UserVO;
 import com.diandian.web.common.controller.WebBaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.experimental.Tolerate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -60,9 +61,9 @@ public class UserAuthController extends WebBaseController {
     @PostMapping("/info")
     public Map<String, Object> info(@RequestBody UserVO userVO,HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
-        System.out.println("### userVO="+ userVO);
+        log.info("##UserVO="+ userVO);
         User user = (User)request.getSession().getAttribute("current");
-        System.out.println("## get user from session:"+user);
+        log.info("## get user from session:"+user);
         result.put("user",user);
         return result;
     }
