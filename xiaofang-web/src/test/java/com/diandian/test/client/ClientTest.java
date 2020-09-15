@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.diandian.framework.netty.codec.JsonDecoder;
 import com.diandian.framework.netty.codec.JsonEncoder;
 import com.diandian.framework.netty.entity.Request;
+import com.diandian.framework.netty.entity.Response;
 import com.diandian.framework.netty.service.client.Client;
+import io.netty.channel.ChannelFuture;
 
 /**
  * @ClassName ClientTest
@@ -31,6 +33,8 @@ public class ClientTest {
             request.setSequence(i);
             request.setMessage(message);
             client.send(request);
+          // Response response = client.sendWithSync(request);
+          // System.out.println("服务端返回："+response);
             Thread.sleep(5000L);
         }
     }
