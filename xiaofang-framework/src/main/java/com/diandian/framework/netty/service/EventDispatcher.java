@@ -98,6 +98,7 @@ public class EventDispatcher {
     }
 
     public void dispatchChannelEvent(final ChannelHandlerContext ctx, final WrappedChannel channel) {
+        log.info("Process connected event.");
         // 只处理通道Connected事件
         if (!channel.isActive()) {
             return;
