@@ -31,11 +31,11 @@ public class SettingController extends BaseController {
     private ISettingService settingService;
     @PostMapping("/list")
     public IPage<Setting> list(@RequestBody SettingDTO settingDTO){
-        log.info("设备查询:"+settingDTO);
+        log.info("设备setting:"+settingDTO);
         long userId = AdminBaseController.getUserIdByShiro() == null ? getUserIdByShiro() : AdminBaseController.getUserIdByShiro();
         settingDTO.setUserId(Integer.valueOf(userId+""));
         IPage<Setting> settingIPage = settingService.queryByPage(settingDTO);
-
+        log.info("setting return.");
         return settingIPage;
     }
 }

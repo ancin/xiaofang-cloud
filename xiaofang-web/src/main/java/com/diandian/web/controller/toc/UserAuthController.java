@@ -43,6 +43,7 @@ public class UserAuthController extends WebBaseController {
     @PostMapping("/save")
     public void save(@RequestBody UserAuth userAuth) {
         log.info("获取认证列表{}", userAuth.toString());
+        log.info("save User auth.");
         Long userId = getUserIdByShiro();
         userAuth.setUserId(userId);
         userAuth.setAuthType(0);
@@ -61,9 +62,9 @@ public class UserAuthController extends WebBaseController {
     @PostMapping("/info")
     public Map<String, Object> info(@RequestBody UserVO userVO,HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
-        log.info("##UserVO="+ userVO);
+        log.info("UserVO="+ userVO);
         User user = (User)request.getSession().getAttribute("current");
-        log.info("## get user from session:"+user);
+        log.info("Get user from session:"+user);
         result.put("user",user);
         return result;
     }

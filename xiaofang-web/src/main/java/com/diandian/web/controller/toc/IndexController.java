@@ -24,9 +24,11 @@ public class IndexController {
     private ApplicationContext applicationContext;
 
     public String home() {
+        log.info("This home {}","Home page open.");
         applicationContext.publishEvent(new OrderCreateEvent(applicationContext,new WxModelMsg()));
         String token = wxConfig.getTokenFromWx();
         log.info(token);
+        log.info("Token {}",token);
         return "redirect:home.html";
     }
 

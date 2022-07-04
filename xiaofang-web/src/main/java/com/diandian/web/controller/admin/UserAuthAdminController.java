@@ -42,8 +42,8 @@ public class UserAuthAdminController {
     @ApiOperation(value = "获取认证列表",notes = "获取认证列表")
     @PostMapping("/list")
     public IPage<UserAuth> list(@RequestBody UserAuthDTO userAuthDTO){
-
         log.info("获取认证列表{}", userAuthDTO.toString());
+        log.info("List all auth.");
         QueryWrapper<UserAuth> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("is_deleted", "N");
         if(StringUtils.isNotEmpty(userAuthDTO.getRealName())){
@@ -66,6 +66,7 @@ public class UserAuthAdminController {
     @PostMapping("/update")
     public void update(@RequestBody UserAuth userAuth){
         log.info("获取认证列表{}", userAuth.toString());
+        log.info("get all update.");
         userAuthService.updateById(userAuth);
         UserAuth oldUserAuth = userAuthService.getById(userAuth.getId());
         if(1 == userAuth.getAuthType()){

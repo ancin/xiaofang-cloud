@@ -17,7 +17,7 @@ public class AdminBaseController extends BaseController {
      */
     public static Long getUserIdByShiro(){
         User userVO = getUserByShiro();
-        log.info("AdminBase get user:"+userVO);
+        log.info("Admin Base controller get user:"+userVO);
         if(userVO==null){
            getResponse().setStatus(HttpStatus.UNAUTHORIZED.value());
            return null;
