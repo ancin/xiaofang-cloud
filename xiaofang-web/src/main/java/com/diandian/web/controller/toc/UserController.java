@@ -38,7 +38,7 @@ public class  UserController extends WebBaseController {
 
     @PostMapping("/getByName")
     public JsonResult get(String userName) {
-        System.out.print(getUserIdByShiro());
+        log.info("Get user shiro id:"+getUserIdByShiro()+"");
         return JsonResult.ok("成功");
     }
 }
