@@ -15,6 +15,7 @@ import java.util.Date;
  **/
 @Data
 public class DeviceDTO {
+
     private Integer id;
     @ApiModelProperty(value = "设备序列号")
     private String deviceNo;
