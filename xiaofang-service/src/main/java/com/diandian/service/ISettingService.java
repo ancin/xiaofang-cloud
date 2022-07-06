@@ -15,5 +15,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-08-29
  */
 public interface ISettingService extends IService<Setting> {
+    /***
+     * Query by page.
+     * @param settingDTO
+     * @return
+     */
     IPage<Setting> queryByPage(SettingDTO settingDTO);
 }
