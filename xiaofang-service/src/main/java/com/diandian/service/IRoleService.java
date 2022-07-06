@@ -12,5 +12,10 @@ import java.util.Set;
  * @last modify by [shengxiaohua 2019-12-16 16:03]
  **/
 public interface IRoleService extends IService<Role> {
+    /***
+     * Find by user id.
+     * @param userId
+     * @return
+     */
     Set<String> findRoles(Long userId);
 }

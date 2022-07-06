@@ -14,5 +14,10 @@ import com.diandian.entity.toc.Device;
  * @since 2020-08-28
  */
 public interface IDeviceService extends IService<Device> {
+    /***
+     * Query by page
+     * @param deviceDTO
+     * @return
+     */
     IPage<Device> queryByPage(DeviceDTO deviceDTO);
 }
