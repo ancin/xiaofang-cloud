@@ -30,8 +30,21 @@ public interface IUserService extends IService<User> {
      */
     User getUserByOpenId(String openId);
 
+    /***
+     * get by ID
+     * @param userId
+     * @return
+     */
     String getOpenIdById(Long userId);
 
+    /***
+     * Generate user.
+     * @param openId
+     * @param userImg
+     * @param nickName
+     * @param subscribe
+     * @return
+     */
     @Transactional
     User generateUser(String openId,String userImg,String nickName, Integer subscribe);
 
