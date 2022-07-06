@@ -9,13 +9,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
- * @author shengxiaohua
+ * @author ancin
  * @Description:
  * @create 2019-11-26 15:41
- * @last modify by [ 2019-11-26 15:41]
+ * @last modify by [ 2021-11-26 15:41]
  **/
 @Data
 public class BaseEntity {
+
     @ApiModelProperty("创建人")
     private String creator;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
