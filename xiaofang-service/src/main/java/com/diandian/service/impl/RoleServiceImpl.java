@@ -16,6 +16,12 @@ import java.util.Set;
  **/
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
+
+    /***
+     * Find roles by user id.
+     * @param userId
+     * @return
+     */
     @Override
     public Set<String> findRoles(Long userId) {
         return baseMapper.findRoles(userId);

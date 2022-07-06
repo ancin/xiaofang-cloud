@@ -19,6 +19,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> implements IDeviceService {
 
+    /***
+     *  Query by page.
+     * @param deviceDTO
+     * @return
+     */
     @Override
     public IPage<Device> queryByPage(DeviceDTO deviceDTO) {
         return baseMapper.queryByPage(deviceDTO.getPage(),deviceDTO);
