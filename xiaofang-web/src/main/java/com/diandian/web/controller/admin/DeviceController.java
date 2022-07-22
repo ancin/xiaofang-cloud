@@ -40,7 +40,6 @@ public class DeviceController extends BaseController {
         long userId = AdminBaseController.getUserIdByShiro() == null ? getUserIdByShiro() : AdminBaseController.getUserIdByShiro();
         deviceDTO.setUserId(userId);
         IPage<Device> deviceIPage = deviceService.queryByPage(deviceDTO);
-
     return deviceIPage;
     }
 }

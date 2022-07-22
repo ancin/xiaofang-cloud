@@ -29,6 +29,12 @@ public class SettingController extends BaseController {
 
     @Autowired
     private ISettingService settingService;
+
+    /***
+     * <p>list setting</p>
+     * @param settingDTO
+     * @return
+     */
     @PostMapping("/list")
     public IPage<Setting> list(@RequestBody SettingDTO settingDTO){
         log.info("设备setting:"+settingDTO);
