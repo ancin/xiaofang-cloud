@@ -18,7 +18,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 /**
  * @author shengxiaohua
  * @Description: 自定义微信Realm
- * @create 2020-01-06 15:59
+ * @create 2022-01-06 15:59
  * @last modify by [shengxiaohua 2020-01-06 15:59]
  **/
 public class WechatRealm extends AuthorizingRealm {
