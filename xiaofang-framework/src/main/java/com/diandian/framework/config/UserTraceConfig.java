@@ -15,6 +15,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class UserTraceConfig  implements WebMvcConfigurer {
 
+    /***
+     *
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new UserTraceInterceptor()).addPathPatterns("/**").excludePathPatterns("swagger-ui.html");

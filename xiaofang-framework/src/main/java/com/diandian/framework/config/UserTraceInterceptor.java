@@ -1,11 +1,7 @@
 package com.diandian.framework.config;
 
-import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.diandian.common.config.SpringTools;
-import com.diandian.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -26,6 +22,14 @@ public class UserTraceInterceptor implements HandlerInterceptor {
     private ApplicationContext context =  SpringTools.getApplicationContext();
 
 
+    /***
+     *
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
