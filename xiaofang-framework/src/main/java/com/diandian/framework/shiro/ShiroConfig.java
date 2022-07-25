@@ -66,6 +66,10 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+    /***
+     *  user realm implement.
+     * @return
+     */
     @Bean
     public PasswordRealm userRealm() {
         PasswordRealm userRealm = new PasswordRealm();
